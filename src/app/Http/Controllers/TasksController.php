@@ -50,4 +50,13 @@ class TasksController extends Controller
         // タスク一覧画面にリダイレクト
         return redirect()->route('tasks.index');
     }
+
+    /**
+     * タスク編集画面
+     */
+    public function edit($id)
+    {
+        $task = Task::find($id);
+        return view('tasks.edit', compact('task'));
+    }
 }
