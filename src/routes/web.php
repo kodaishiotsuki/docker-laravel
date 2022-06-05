@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TasksController::class, 'index'])->name('tasks.index');
+// 詳細ページ
+Route::get('/{id}', [TasksController::class, 'show'])->name('tasks.show');
+// タスク追加
+Route::get('/tasks/add', [TasksController::class, 'add'])->name('tasks.add');
+// タスク追加-DBに値を入れる処理
+Route::post('/tasks/add', [TasksController::class, 'store'])->name('tasks.store');
